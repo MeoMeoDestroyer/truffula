@@ -4,8 +4,13 @@ As part of Wave 0, please fill out notes for each of the below files. They are i
 PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 
 ## App.java
-
+- where main at and explain what the code will be doing
+- A starter file for my project where my code/program? will display some flags:
+    -h , -nc , path
 ## ConsoleColor.java
+- Where color for our output/program stored as code and enum
+- We can print those colored text in the terminal.
+- It is like a color libabry books as private?
 
 ## ColorPrinter.java / ColorPrinterTest.java
 
