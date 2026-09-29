@@ -13,9 +13,11 @@ PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 - It is like a color libabry books as private?
 
 ## ColorPrinter.java / ColorPrinterTest.java
-
+- Where you print text in different colors using the consoleColor library 
+- A Unit Test for colorPrinter correctly prints then reset? the terminal color afterward.
 ## TruffulaOptions.java / TruffulaOptionsTest.java
-
+- A file where it will read the command line then decide which options the user selected and then verify
+- A unit test for TruffulaOptions if it actually read the command correctly and follow throughly
 ## TruffulaPrinter.java / TruffulaPrinterTest.java
 
 ## AlphabeticalFileSorter.java
