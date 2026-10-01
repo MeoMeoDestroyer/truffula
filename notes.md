@@ -19,5 +19,7 @@ PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 - A file where it will read the command line then decide which options the user selected and then verify
 - A unit test for TruffulaOptions if it actually read the command correctly and follow throughly
 ## TruffulaPrinter.java / TruffulaPrinterTest.java
-
+- Where we print the folder tree.
+- taking over from truffula.options -> continue and do the printing
 ## AlphabeticalFileSorter.java
+- Help clean up, sort files and folders alphabetically before truffulaPrinter work.
