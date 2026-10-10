@@ -251,4 +251,33 @@ void testColors(@TempDir File tempDir) throws IOException {
         ConsoleColor.PURPLE + "   file.txt"
     ));
 }
+
+@Test
+void testSameNameDifferentCase(@TempDir File tempDir) throws IOException {
+    File root = new File(tempDir, "root");
+    root.mkdir();
+
+    new File(root, "meomeo.txt").createNewFile();
+    new File(root, "Meomeo.txt").createNewFile();
+
+    TruffulaOptions options =
+        new TruffulaOptions(root, false, false);
+
+    ByteArrayOutputStream output =
+        new ByteArrayOutputStream();
+
+    PrintStream printStream =
+        new PrintStream(output);
+
+    TruffulaPrinter printer =
+        new TruffulaPrinter(options, printStream);
+
+    printer.printTree();
+
+    String result = output.toString();
+
+    assertTrue(
+        result.indexOf("Meomeo.txt") < result.indexOf("meomeo.txt")
+    );
+}
 }
