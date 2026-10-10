@@ -113,24 +113,32 @@ public class TruffulaPrinter {
     // - For Wave 6: Use AlphabeticalFileSorter
     // DO NOT USE SYSTEM.OUT.PRINTLN
     // USE out.println instead (will use your ColorPrinter)
+
+
     private void printTreeHelper(File file, int depth) {
       // add 3 space for each level 
       String space = "   ".repeat(depth);
       // print folder name if it is a folder
-  if (file.isDirectory()) {
-    out.println(space + file.getName() + "/");
+      if (file.isDirectory()) {
+        out.println(space + file.getName() + "/");
 
-    File[] children = file.listFiles();
+        File[] children = file.listFiles();
 
-    if (children != null) {
-      for (File child : children) {
+        if (children != null) {
+          // AlphabeticalFileSorter
+          children = AlphabeticalFileSorter.sort(children);
+          for (File child : children) {
+            // Skip hidden files when showHidden is false
+            if (!options.isShowHidden() && child.isHidden()) {
+          continue;
+        }
+
         printTreeHelper(child, depth + 1);
-      }
-    }
-
-  } else {
-    // if it a file print file name
-    out.println(space + file.getName());
-  }
+          }
+        }
+        } else {
+          // if it a file print file name
+          out.println(space + file.getName());
+        }
 }
 }

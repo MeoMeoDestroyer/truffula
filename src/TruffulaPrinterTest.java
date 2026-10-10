@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TruffulaPrinterTest {
@@ -178,4 +179,43 @@ public class TruffulaPrinterTest {
         assertTrue(result.contains("root/"));
         assertTrue(result.contains("hello.txt"));
     }
+
+    @Test
+    void testHiddenFileNotShown(@TempDir File tempDir) throws IOException {
+        // Create root folder
+        File root = new File(tempDir, "root");
+        root.mkdir();
+
+        // Create normal file
+        File normalFile = new File(root, "hello.txt");
+        normalFile.createNewFile();
+
+        // Create hidden file
+        createHiddenFile(root, ".hidden.txt");
+
+        // Do not show hidden files
+        TruffulaOptions options =
+            new TruffulaOptions(root, false, false);
+
+        // Capture output
+        ByteArrayOutputStream output =
+            new ByteArrayOutputStream();
+
+        PrintStream printStream =
+            new PrintStream(output);
+
+        TruffulaPrinter printer =
+            new TruffulaPrinter(options, printStream);
+
+        // Print tree
+        printer.printTree();
+
+        String result = output.toString();
+
+        // Normal file should show
+        assertTrue(result.contains("hello.txt"));
+
+        // Hidden file should not show
+        assertFalse(result.contains(".hidden.txt"));
+}
 }
