@@ -41,7 +41,6 @@ public class App {
    * Error messages will be shown for illegal arguments or a not found file
    */
   public static void main(String[] args) throws Exception {
-    // Implement this
 
     TruffulaOptions options = new TruffulaOptions(args);
     // pass it to a new TruffulaPrinter that uses System.out

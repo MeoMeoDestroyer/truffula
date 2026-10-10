@@ -57,4 +57,5 @@ void testDefaultColorIsWhite() {
 
     assertEquals(expectedOutput, outputStream.toString());
 }
+
 }
