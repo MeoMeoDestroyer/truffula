@@ -118,6 +118,16 @@ public class TruffulaPrinter {
     private void printTreeHelper(File file, int depth) {
       // add 3 space for each level 
       String space = "   ".repeat(depth);
+
+      // Set color based on the depth
+      if (options.isUseColor()) {
+        ConsoleColor color =
+            colorSequence.get(depth % colorSequence.size());
+
+        out.setCurrentColor(color);
+      } else {
+        out.setCurrentColor(ConsoleColor.WHITE);
+      }
       // print folder name if it is a folder
       if (file.isDirectory()) {
         out.println(space + file.getName() + "/");

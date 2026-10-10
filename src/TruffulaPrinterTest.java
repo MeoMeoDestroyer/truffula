@@ -218,4 +218,37 @@ public class TruffulaPrinterTest {
         // Hidden file should not show
         assertFalse(result.contains(".hidden.txt"));
 }
+// CHeck that each tree level uses the correct color folliwng the instruction
+@Test
+void testColors(@TempDir File tempDir) throws IOException {
+    File root = new File(tempDir, "root");
+    root.mkdir();
+
+    File child = new File(root, "file.txt");
+    child.createNewFile();
+
+    TruffulaOptions options =
+        new TruffulaOptions(root, false, true);
+
+    ByteArrayOutputStream output =
+        new ByteArrayOutputStream();
+
+    PrintStream printStream =
+        new PrintStream(output);
+
+    TruffulaPrinter printer =
+        new TruffulaPrinter(options, printStream);
+
+    printer.printTree();
+
+    String result = output.toString();
+
+    assertTrue(result.contains(
+        ConsoleColor.WHITE + "root/"
+    ));
+
+    assertTrue(result.contains(
+        ConsoleColor.PURPLE + "   file.txt"
+    ));
+}
 }
